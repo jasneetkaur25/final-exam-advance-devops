@@ -2,19 +2,21 @@ import unittest
 from unittest.main import main
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
+
 
 options = Options()
-options.add_experimental_option("prefs", {
-    "download.deafult_dictionary": r"./",
-    "download.prompt_for_dpwnload": False,
-    "download.directory_upgrade": True,
-    "safebrowsing.enabled": True
-});
+options.headless = True
+# options.add_experimental_option("prefs", {
+#     "download.deafult_dictionary": r"./",
+#     "download.prompt_for_dpwnload": False,
+#     "download.directory_upgrade": True,
+#     "safebrowsing.enabled": True
+# });
 
 class FirefoxSearch(unittest.TestCase):
     def setUp(self):
-        self.driver = webdriver.Firefox()
+        self.driver = webdriver.Firefox(options=options)
         self.driver.implicitly_wait(30)
 
     def test_name_title(self):
